@@ -15,6 +15,7 @@
 		<mvc:annotation-driven conversion-service="conversionService"/>
 		<mvc:resources location="/css/" mapping="/css/**"/>
 		<mvc:resources location="/" mapping="/*.html"/>
+		<!-- 自定义的Converter -->
   		<bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
 			<property name="converters">
 				<set>
@@ -24,10 +25,21 @@
 				</set>
 			</property>
 		</bean>
+		<!-- 自定义的Formatter -->
 <!--  		<bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
 			<property name="formatters">
 				<set>
 					<bean class="com.zhen.springmvc.app06a.formatter.DateFormatter">
+						<constructor-arg type="java.lang.String" value="MM-dd-yyyy"/>
+					</bean>
+				</set>
+			</property>
+		</bean> -->
+		<!-- 使用FormatterRegistrar注册Formatter -->
+<!--   		<bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+			<property name="formatterRegistrars">
+				<set>
+					<bean class="com.zhen.springmvc.app06a.registrar.MyFormatterRegistar">
 						<constructor-arg type="java.lang.String" value="MM-dd-yyyy"/>
 					</bean>
 				</set>
