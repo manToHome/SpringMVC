@@ -15,15 +15,24 @@
 		<mvc:annotation-driven conversion-service="conversionService"/>
 		<mvc:resources location="/css/" mapping="/css/**"/>
 		<mvc:resources location="/" mapping="/*.html"/>
- 		<bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
+  		<bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
 			<property name="converters">
-				<list>
+				<set>
 					<bean class="com.zhen.springmvc.app06a.converter.StringToDateConverter">
 						<constructor-arg type="java.lang.String" value="MM-dd-yyyy"/>
 					</bean>
-				</list>
+				</set>
 			</property>
 		</bean>
+<!--  		<bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+			<property name="formatters">
+				<set>
+					<bean class="com.zhen.springmvc.app06a.formatter.DateFormatter">
+						<constructor-arg type="java.lang.String" value="MM-dd-yyyy"/>
+					</bean>
+				</set>
+			</property>
+		</bean> -->
 		<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 			<property name="prefix" value="/WEB-INF/jsp/"/>
 			<property name="suffix" value=".jsp"/>
